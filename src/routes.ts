@@ -20,9 +20,9 @@ routes.put('/categoria/:id', comicsController.update)
 routes.delete('/categoria/:id', comicsController.delete)
 
 // Creators Routes
-routes.post('/categoria', comicsController.create)
-routes.get('/categoria', comicsController.findAll)
-routes.get('/categoria/:id', comicsController.findById)
-routes.put('/categoria/:id', comicsController.update)
-routes.delete('/categoria/:id', comicsController.delete)
+routes.post('/categoria', creatorsController.create)
+routes.get('/categoria', creatorsController.findAll)
+routes.get('/categoria/:id', creatorsController.findById)
+routes.put('/categoria/:id', creatorsController.update)
+routes.delete('/categoria/:id', creatorsController.delete)
 export { routes }
