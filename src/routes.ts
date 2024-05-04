@@ -30,6 +30,6 @@ routes.get('/categoria/:id', creatorsController.findById)
 routes.put('/categoria/:id', creatorsController.update)
 routes.delete('/categoria/:id', creatorsController.delete)
 // Creators Routes (API)
-routes.get('/creators/api', creatorsController.)
+routes.get('/creators/api', creatorsController.creatorInfo)
 
 export { routes }
