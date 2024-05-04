@@ -1,13 +1,6 @@
 import { Request, Response } from 'express'
 import comicService from '../service/comics.service'
 import axios from 'axios'
-import md5 from 'md5'
-
-const baseUrl = 'http://gateway.marvel.com/v1/public/'
-const publicKey = "fb0ecbf1e8cbb00c85ee9466b918904f"
-const privateKey = "78cf31e0e1a4d176edec676498f402f52b20660b"
-const time = Number(new Date())
-const hash = md5(time + privateKey + publicKey)
 
 class ComicsController {
     async create(req: Request, res: Response) {
@@ -17,6 +10,25 @@ class ComicsController {
             return res.json(createdComic)
         } catch (error) {
             console.error(`Error to create a new comic: ${error}`)
+            return res.status(500)
+        }
+    }
+
+    async comicFeature(req: Request, res: Response) {
+        try {
+            const responseApi = await axios.get(
+                "https://gateway.marvel.com/v1/public/comics/85496?ts=1&apikey=fb0ecbf1e8cbb00c85ee9466b918904f&hash=1b76d24fae203827bac77db84ab90835"
+            )
+            const comic = responseApi.data.data.results[0]
+            const comicData = {
+            title: comic.title,
+            description: comic.description,
+            thumbnail: comic.thumbnail ? `${comic.thumbnail.path}.${comic.thumbnail.extension}` : null
+        };
+            return res.status(200).json(comicData)
+
+        } catch (error) {
+            console.error(`Error to search all comics launched: ${error}`)
             return res.status(500)
         }
     }

@@ -1,13 +1,6 @@
 import { Request, Response } from 'express'
 import characterService from '../service/characters.service'
 import axios from 'axios'
-import md5 from 'md5'
-
-const baseUrl = 'http://gateway.marvel.com/v1/public/'
-const publicKey = "fb0ecbf1e8cbb00c85ee9466b918904f"
-const privateKey = "78cf31e0e1a4d176edec676498f402f52b20660b"
-const time = Number(new Date())
-const hash = md5(time + privateKey + publicKey)
 
 class CharactersController {
     async create(req: Request, res: Response) {
@@ -17,6 +10,24 @@ class CharactersController {
             return res.json(createdCharacter)
         } catch (error) {
             console.error(`Error to create a new character: ${error}`)
+            return res.status(500)
+        }
+    }
+
+    async findAllCharactersAPI(req: Request, res: Response) {
+        try {
+            const responseApi = await axios.get(
+                "https://gateway.marvel.com/v1/public/comics/85496/characters?ts=1&apikey=fb0ecbf1e8cbb00c85ee9466b918904f&hash=1b76d24fae203827bac77db84ab90835"
+            )
+            const characters = responseApi.data.data.results.map((character: { name: any; description: any; thumbnail: { path: any; extension: any } }) => ({
+                name: character.name,
+                description: character.description,
+                thumbnail: character.thumbnail ? `${character.thumbnail.path}.${character.thumbnail.extension}` : null
+            }))
+            return res.status(200).json(characters);
+
+        } catch (error) {
+            console.error(`Error to search all characters: ${error}`)
             return res.status(500)
         }
     }
