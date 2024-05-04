@@ -10,7 +10,7 @@ class ComicsController {
             return res.json(createdComic)
         } catch (error) {
             console.error(`Error to create a new comic: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -29,7 +29,7 @@ class ComicsController {
 
         } catch (error) {
             console.error(`Error to search all comics launched: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -39,7 +39,7 @@ class ComicsController {
             return res.json(findedComics)
         } catch (error) {
             console.error(`Error to search all comics: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -49,7 +49,7 @@ class ComicsController {
             return res.json(findComic)
         } catch (error) {
             console.error(`Error to search a comic: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -59,7 +59,7 @@ class ComicsController {
             return res.json(updateComic)
         } catch (error) {
             console.error(`Error to update a comic: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -69,7 +69,7 @@ class ComicsController {
             return res.json(deletedComicMsg)
         } catch (error) {
             console.error(`Error to delete a comic: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 }

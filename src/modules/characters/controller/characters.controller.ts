@@ -10,7 +10,7 @@ class CharactersController {
             return res.json(createdCharacter)
         } catch (error) {
             console.error(`Error to create a new character: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -28,7 +28,7 @@ class CharactersController {
 
         } catch (error) {
             console.error(`Error to search all characters: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -38,7 +38,7 @@ class CharactersController {
             return res.json(findedCharacters)
         } catch (error) {
             console.error(`Error to search all characters: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -48,7 +48,7 @@ class CharactersController {
             return res.json(findCharacter)
         } catch (error) {
             console.error(`Error to search a character: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -58,7 +58,7 @@ class CharactersController {
             return res.json(updateCreator)
         } catch (error) {
             console.error(`Error to update a character: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -68,7 +68,7 @@ class CharactersController {
             return res.json(deletedCreatorMsg)
         } catch (error) {
             console.error(`Error to delete a character: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 }

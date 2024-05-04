@@ -10,7 +10,7 @@ class CreatorController {
             return res.json(createdCreator)
         } catch (error) {
             console.error(`Error to create a new creator: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -28,7 +28,7 @@ class CreatorController {
 
         } catch (error) {
             console.error(`Error to search all comics launched: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -39,7 +39,7 @@ class CreatorController {
             return res.json(findedCreators)
         } catch (error) {
             console.error(`Error to search all creators: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -50,7 +50,7 @@ class CreatorController {
             return res.json(findCreator)
         } catch (error) {
             console.error(`Error to search a creator: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -61,7 +61,7 @@ class CreatorController {
             return res.json(updateCreator)
         } catch (error) {
             console.error(`Error to update a creator: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 
@@ -72,7 +72,7 @@ class CreatorController {
             return res.json(deletedCreatorMsg)
         } catch (error) {
             console.error(`Error to delete a creator: ${error}`)
-            return res.status(500)
+            return res.status(500).json({ error: 'Internal server error' })
         }
     }
 }
