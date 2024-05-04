@@ -19,13 +19,12 @@ class CreatorController {
             const responseApi = await axios.get(
                 "https://gateway.marvel.com/v1/public/comics/85496/creators?ts=1&apikey=fb0ecbf1e8cbb00c85ee9466b918904f&hash=1b76d24fae203827bac77db84ab90835"
             )
-            const comic = responseApi.data.data.results[0]
-            const comicData = {
-            title: comic.title,
-            description: comic.description,
-            thumbnail: comic.thumbnail ? `${comic.thumbnail.path}.${comic.thumbnail.extension}` : null
-        };
-            return res.status(200).json(comicData)
+            const creators = responseApi.data.data.results.map(creator => ({
+                fullname: creator.fullName,
+                thumbnail: creator.thumbnail ? `${creator.thumbnail.path}.${creator.thumbnail.extension}` : null,
+                comics: creator.comics.items.map(comic => comic.name)
+            }))
+            return res.status(200).json(creators)
 
         } catch (error) {
             console.error(`Error to search all comics launched: ${error}`)
