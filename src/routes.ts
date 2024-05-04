@@ -7,7 +7,7 @@ const routes = Router()
 
 // Characters Routes
 routes.post('/character', charactersController.create)
-routes.get('/character', charactersController.findAll)
+routes.get('/characters', charactersController.findAll)
 routes.get('/character/:id', charactersController.findById)
 routes.put('/character/:id', charactersController.update)
 routes.delete('/character/:id', charactersController.delete)
@@ -15,16 +15,16 @@ routes.delete('/character/:id', charactersController.delete)
 routes.get('/characters/api', charactersController.findAllCharactersAPI)
 
 // Comics Routes
-routes.post('/comics', comicsController.create)
+routes.post('/comic', comicsController.create)
 routes.get('/comics', comicsController.findAll)
-routes.get('/comics/:id', comicsController.findById)
-routes.put('/comics/:id', comicsController.update)
-routes.delete('/comics/:id', comicsController.delete)
+routes.get('/comic/:id', comicsController.findById)
+routes.put('/comic/:id', comicsController.update)
+routes.delete('/comic/:id', comicsController.delete)
 // Comics Routes (API)
 routes.get('/comics/api', comicsController.comicFeature)
 
 // Creators Routes
-routes.post('/creators', creatorsController.create)
+routes.post('/creator', creatorsController.create)
 routes.get('/creators', creatorsController.findAll)
 routes.get('/creators/:id', creatorsController.findById)
 routes.put('/creators/:id', creatorsController.update)
