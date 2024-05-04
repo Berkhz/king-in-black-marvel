@@ -17,7 +17,7 @@ class CharactersController {
     async findAllCharactersAPI(req: Request, res: Response) {
         try {
             const responseApi = await axios.get(
-                "https://gateway.marvel.com/v1/public/comics/85496/characters?ts=1&apikey=fb0ecbf1e8cbb00c85ee9466b918904f&hash=1b76d24fae203827bac77db84ab90835"
+                "https://gateway.marvel.com/v1/public/comics/85653/characters?ts=1&apikey=fb0ecbf1e8cbb00c85ee9466b918904f&hash=1b76d24fae203827bac77db84ab90835"
             )
             const characters = responseApi.data.data.results.map((character: { name: any; description: any; thumbnail: { path: any; extension: any } }) => ({
                 name: character.name,

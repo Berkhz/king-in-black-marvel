@@ -17,12 +17,12 @@ class CreatorController {
     async creatorInfo(req: Request, res: Response) {
         try {
             const responseApi = await axios.get(
-                "https://gateway.marvel.com/v1/public/comics/85496/creators?ts=1&apikey=fb0ecbf1e8cbb00c85ee9466b918904f&hash=1b76d24fae203827bac77db84ab90835"
+                "https://gateway.marvel.com/v1/public/comics/85653/creators?ts=1&apikey=fb0ecbf1e8cbb00c85ee9466b918904f&hash=1b76d24fae203827bac77db84ab90835"
             )
-            const creators = responseApi.data.data.results.map(creator => ({
+            const creators = responseApi.data.data.results.map((creator: { fullName: any; thumbnail: { path: any; extension: any }; comics: { items: any[] } }) => ({
                 fullname: creator.fullName,
                 thumbnail: creator.thumbnail ? `${creator.thumbnail.path}.${creator.thumbnail.extension}` : null,
-                comics: creator.comics.items.map(comic => comic.name)
+                comics: creator.comics.items.map((comic: { name: any }) => comic.name)
             }))
             return res.status(200).json(creators)
 
