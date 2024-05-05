@@ -33,6 +33,26 @@ class ComicsController {
         }
     }
 
+    async comicStories(req: Request, res: Response) {
+        try {
+            const responseApi = await axios.get(
+                "https://gateway.marvel.com/v1/public/comics/85653/stories?ts=1&apikey=fb0ecbf1e8cbb00c85ee9466b918904f&hash=1b76d24fae203827bac77db84ab90835"
+            );
+            const stories = responseApi.data.data.results
+            
+            const comicData = stories.map((story: { title: any; characters: { items: any[] }; modified: any }) => ({
+                title: story.title,
+                characters: story.characters.items.map((character: { name: any }) => character.name),
+                modified: story.modified
+            }))
+            
+            return res.status(200).json(comicData)
+        } catch (error) {
+            console.error(`Error fetching comic stories: ${error}`)
+            return res.status(500).json({ error: 'Internal server error' })
+        }
+    }
+
     async findAll(req: Request, res: Response) {
         try {
             const findedComics = await comicService.findAllComics()

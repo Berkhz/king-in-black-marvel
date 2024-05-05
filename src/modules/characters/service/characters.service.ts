@@ -7,6 +7,11 @@ class CharacterService {
         return createdCharacter
     }
 
+    async findCharacterByName(name: string | RegExp) {
+        const findedCharacters = await characterModel.findOne({ name: { $regex: new RegExp(name, 'i') } })
+        return findedCharacters;
+    }
+
     async findAllCharacters() {
         const findedCharacters = await characterModel.find()
         return findedCharacters

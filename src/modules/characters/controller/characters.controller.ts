@@ -32,6 +32,16 @@ class CharactersController {
         }
     }
 
+    async characterByName(req: Request, res: Response) {
+        try {
+            const findedCharacterByName = await characterService.findCharacterByName(req.params.name)
+            return res.json(findedCharacterByName)
+        } catch (error) {
+            console.error(`Error to search character by name: ${error}`)
+            return res.status(500).json({ error: 'Internal server error' })
+        }
+    }
+
     async findAll(req: Request, res: Response) {
         try {
             const findedCharacters = await characterService.findAllCharacters()
